@@ -13,11 +13,14 @@ public class Package : MonoBehaviour
 
     private float timeAlive;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         gameStateManager = Camera.main.GetComponent<GameStateManager>();
         hitText = GameObject.Find("HitText").GetComponent<HitText>();
+        audioSource = GameObject.Find("Sun Light").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,8 +54,10 @@ public class Package : MonoBehaviour
 
     void KillMe()
     {
-        Destroy(gameObject);
+        audioSource.Play();
         gameStateManager.currentGameState = GameStateManager.GameState.Ready;
+        Destroy(gameObject);
+
     }
 
 
