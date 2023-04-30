@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class InTransitText : MonoBehaviour
+public class HideText : MonoBehaviour
 {
     private GameStateManager gameStateManager;
     private TextMeshProUGUI text;
+
+    public List<GameStateManager.GameState> shownInGameStates;
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +20,9 @@ public class InTransitText : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (gameStateManager.currentGameState == GameStateManager.GameState.OnDelivery)
+        if (shownInGameStates.IndexOf(gameStateManager.currentGameState) >= 0)
         {
             text.enabled = true;
-            text.text = "in transit - " + ((int)(gameStateManager.timer * 100)) / 100f;
         }
         else
         {

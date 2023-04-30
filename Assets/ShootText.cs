@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class InTransitText : MonoBehaviour
+public class ShootText : MonoBehaviour
 {
     private GameStateManager gameStateManager;
     private TextMeshProUGUI text;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +19,17 @@ public class InTransitText : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (gameStateManager.currentGameState == GameStateManager.GameState.OnDelivery)
+        if (gameStateManager.currentGameState == GameStateManager.GameState.Ready)
         {
             text.enabled = true;
-            text.text = "in transit - " + ((int)(gameStateManager.timer * 100)) / 100f;
+            if (Input.GetMouseButton(0))
+            {
+                text.text = "Right click to cancel";
+            }
+            else
+            {
+                text.text = "Left click to shoot";
+            }
         }
         else
         {

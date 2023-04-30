@@ -20,7 +20,7 @@ public class ShowCross : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (gameStateManager.currentTarget.ToString().ToLower() == gameObject.name.ToLower())
+        if ((gameStateManager.currentGameState == GameStateManager.GameState.Ready || gameStateManager.currentGameState == GameStateManager.GameState.OnDelivery) && gameStateManager.currentTarget.ToString().ToLower() == gameObject.name.ToLower())
         {
             crossSpriteRenderer.enabled = true;
         }
